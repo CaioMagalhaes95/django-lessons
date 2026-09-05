@@ -1,4 +1,4 @@
-#Pushing a little getting in touch django project so I can get warmed in tech once again.
+####Pushing a little getting in touch django project so I can get warmed in tech once again.
 
 pip install django requests
 html to make a little and minimal interface so you can search your city's weather
