@@ -13,4 +13,7 @@ urlpatterns = [
 
     path('instrument/', views.InstrumentList.as_view(), name='instrument-list'),
     path('instrument/<int:pk>', views.InstrumentDetail.as_view(), name='instrument-detail'),
+
+    path('band/', views.BandList.as_view(), name='band-list'),
+    path('band/<int:pk>', views.BandDetail.as_view(), name='band-detail')
 ]

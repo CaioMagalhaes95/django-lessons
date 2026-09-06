@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Instrument, Music, Musician
-from .serializers import MusicSerializer, MusicianSerializer, InstrumentSerializer
+from .models import Band, Instrument, Music, Musician
+from .serializers import BandSerializer, MusicSerializer, MusicianSerializer, InstrumentSerializer
 
 
 from django.http import HttpResponse, request
@@ -31,6 +31,14 @@ class InstrumentList(generics.ListCreateAPIView):
 class InstrumentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Instrument.objects.all()
     serializer_class = InstrumentSerializer
+
+class BandList(generics.ListCreateAPIView):
+    queryset = Band.objects.all()
+    serializer_class = BandSerializer
+
+class BandDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Band.objects.all()
+    serializer_class = BandSerializer
 
 # @api_view(['PUT', 'DELETE'])
 # def musician_detail(request, pk):

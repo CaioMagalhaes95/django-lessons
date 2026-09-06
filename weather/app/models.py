@@ -31,3 +31,11 @@ class Instrument(models.Model):
 
     def __str__(self):
         return self.name
+
+class Band(models.Model):
+    class Meta:
+        db_table = 'band'
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)
+    typeofmusic = models.CharField(max_length=100)
+    numberofmembers = models.IntegerField()
