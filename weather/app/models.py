@@ -39,3 +39,9 @@ class Band(models.Model):
     name = models.CharField(max_length=200)
     typeofmusic = models.CharField(max_length=100)
     numberofmembers = models.IntegerField()
+
+class Teste(models.Model):
+    class Meta:
+        db_table = 'teste'
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200)

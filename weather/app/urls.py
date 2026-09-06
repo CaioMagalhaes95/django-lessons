@@ -15,5 +15,7 @@ urlpatterns = [
     path('instrument/<int:pk>', views.InstrumentDetail.as_view(), name='instrument-detail'),
 
     path('band/', views.BandList.as_view(), name='band-list'),
-    path('band/<int:pk>', views.BandDetail.as_view(), name='band-detail')
+    path('band/<int:pk>', views.BandDetail.as_view(), name='band-detail'),
+
+    path('teste/', views.TesteList.as_view(), name='teste-list')
 ]

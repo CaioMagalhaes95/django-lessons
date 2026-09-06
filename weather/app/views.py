@@ -1,12 +1,27 @@
+from symtable import Class
+
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .models import Band, Instrument, Music, Musician
-from .serializers import BandSerializer, MusicSerializer, MusicianSerializer, InstrumentSerializer
-
-
+from rest_framework.views import APIView
+from .models import Band, Instrument, Music, Musician, Teste
+from .serializers import BandSerializer, MusicSerializer, MusicianSerializer, InstrumentSerializer, TestSerializer
 from django.http import HttpResponse, request
+
+# class TesteAPIView(APIView):
+#     def get(self, request):
+#         teste = Teste.objects.all()
+#         serializer = TestSerializer(teste, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request):
+#         serializer = TestSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=201)
+class TesteList(generics.ListCreateAPIView):
+    queryset = Teste.objects.all()
+    serializer_class = TestSerializer
 
 class MusicList(generics.ListCreateAPIView):
     queryset = Music.objects.all()
@@ -40,20 +55,3 @@ class BandDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Band.objects.all()
     serializer_class = BandSerializer
 
-# @api_view(['PUT', 'DELETE'])
-# def musician_detail(request, pk):
-#     try:
-#         musician = Musician.objects.get(pk=pk)
-#     except Musician.DoesNotExist:
-#         return HttpResponse(status=404)
-
-#     if request.method == 'PUT':
-#         serializer = MusicianSerializer(musician, data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_200_OK)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-#     elif request.method == 'DELETE':
-#         musician.delete()
-#         return Response(status=status.HTTP_204_NO_CONTENT)    
