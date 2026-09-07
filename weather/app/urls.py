@@ -1,6 +1,23 @@
+
 from django.urls import path
+
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    
+    path('music/', views.MusicList.as_view(), name='music-list'),
+    path('music/<int:pk>', views.MusicDetail.as_view(), name='music-detail'),
+
+    path('musician/', views.MusicianList.as_view(), name='musician-list'),
+    path('musician/<int:pk>', views.MusicianDetail.as_view(), name='musician-detail'),
+
+    path('instrument/', views.InstrumentList.as_view(), name='instrument-list'),
+    path('instrument/<int:pk>', views.InstrumentDetail.as_view(), name='instrument-detail'),
+
+    path('band/', views.BandList.as_view(), name='band-list'),
+    path('band/<int:pk>', views.BandDetail.as_view(), name='band-detail'),
+
+    path('teste/', views.TesteList.as_view(), name='teste-list'),
+    path('testeapi/', views.TesteAPIView.as_view(), name='teste-api'),
+    path('testeapi/<int:pk>', views.TesteDetailAPIView.as_view(), name='teste-api-detail'),
 ]
