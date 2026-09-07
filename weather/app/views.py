@@ -8,17 +8,42 @@ from .models import Band, Instrument, Music, Musician, Teste
 from .serializers import BandSerializer, MusicSerializer, MusicianSerializer, InstrumentSerializer, TestSerializer
 from django.http import HttpResponse, request
 
-# class TesteAPIView(APIView):
-#     def get(self, request):
-#         teste = Teste.objects.all()
-#         serializer = TestSerializer(teste, many=True)
-#         return Response(serializer.data)
+class TesteAPIView(APIView):
+    queryset = Teste.objects.all()
 
-#     def post(self, request):
-#         serializer = TestSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=201)
+    def get(self, request):
+        teste = Teste.objects.all()
+        serializer = TestSerializer(teste, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+        
+class TesteDetailAPIView(APIView):
+    queryset = Teste.objects.all()
+
+    def get(self, request, pk):
+        teste = Teste.objects.get(pk=pk)
+        serializer = TestSerializer(teste)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        teste = Teste.objects.get(pk=pk)
+        serializer = TestSerializer(teste, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        teste = Teste.objects.get(pk=pk)
+        teste.delete()
+        return Response(status=204)
+
 class TesteList(generics.ListCreateAPIView):
     queryset = Teste.objects.all()
     serializer_class = TestSerializer

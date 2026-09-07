@@ -17,5 +17,7 @@ urlpatterns = [
     path('band/', views.BandList.as_view(), name='band-list'),
     path('band/<int:pk>', views.BandDetail.as_view(), name='band-detail'),
 
-    path('teste/', views.TesteList.as_view(), name='teste-list')
+    path('teste/', views.TesteList.as_view(), name='teste-list'),
+    path('testeapi/', views.TesteAPIView.as_view(), name='teste-api'),
+    path('testeapi/<int:pk>', views.TesteDetailAPIView.as_view(), name='teste-api-detail'),
 ]
